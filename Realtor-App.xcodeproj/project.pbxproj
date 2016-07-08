@@ -16,6 +16,8 @@
 		4EC028DA1D30443800ED6338 /* Realtor_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC028D91D30443800ED6338 /* Realtor_AppUITests.swift */; };
 		4EC028E81D304AAF00ED6338 /* HomeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC028E71D304AAF00ED6338 /* HomeListVC.swift */; };
 		4EC028EA1D304ABF00ED6338 /* SummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC028E91D304ABF00ED6338 /* SummaryVC.swift */; };
+		4EC028ED1D304DD500ED6338 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC028EC1D304DD500ED6338 /* CoreDataStack.swift */; };
+		4EC028F01D304E1C00ED6338 /* Home Report.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4EC028EE1D304E1C00ED6338 /* Home Report.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		4EC028DB1D30443800ED6338 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EC028E71D304AAF00ED6338 /* HomeListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListVC.swift; sourceTree = "<group>"; };
 		4EC028E91D304ABF00ED6338 /* SummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryVC.swift; sourceTree = "<group>"; };
+		4EC028EC1D304DD500ED6338 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		4EC028EF1D304E1C00ED6338 /* Home Report.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Home Report.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 				4EC028C01D30443800ED6338 /* Assets.xcassets */,
 				4EC028C21D30443800ED6338 /* LaunchScreen.storyboard */,
 				4EC028C51D30443800ED6338 /* Info.plist */,
+				4EC028EC1D304DD500ED6338 /* CoreDataStack.swift */,
+				4EC028EE1D304E1C00ED6338 /* Home Report.xcdatamodeld */,
 			);
 			path = "Realtor-App";
 			sourceTree = "<group>";
@@ -277,6 +283,8 @@
 				4EC028EA1D304ABF00ED6338 /* SummaryVC.swift in Sources */,
 				4EC028BA1D30443700ED6338 /* AppDelegate.swift in Sources */,
 				4EC028E81D304AAF00ED6338 /* HomeListVC.swift in Sources */,
+				4EC028ED1D304DD500ED6338 /* CoreDataStack.swift in Sources */,
+				4EC028F01D304E1C00ED6338 /* Home Report.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +527,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4EC028EE1D304E1C00ED6338 /* Home Report.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4EC028EF1D304E1C00ED6338 /* Home Report.xcdatamodel */,
+			);
+			currentVersion = 4EC028EF1D304E1C00ED6338 /* Home Report.xcdatamodel */;
+			path = "Home Report.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4EC028AE1D30443700ED6338 /* Project object */;
 }
