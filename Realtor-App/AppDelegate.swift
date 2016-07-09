@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        checkDataStore()
+        
         return true
     }
 
@@ -39,6 +43,88 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    // MARK: - Helpers
+    
+    /* Does data already exist in the data store? */
+    
+    func checkDataStore() {
+        
+        let coreDataStack = CoreDataStack()
+        
+        let request = NSFetchRequest(entityName: "Home")
+        
+        // .init() deprecated in Swift 3
+        //let homeCount = coreDataStack.managedObjectContext.countForFetchRequest(request, error: NSErrorPointer.init())
+        let homeCount = coreDataStack.managedObjectContext.countForFetchRequest(request, error: nil)
+        
+        print("The total home count is: ")
+        print(homeCount)
+        
+        if homeCount == 0 {
+            uploadSampleData()
+        }
+        
+    }
+    
+    func uploadSampleData() {
+        
+        let coreDataStack = CoreDataStack()
+        
+        let url = NSBundle.mainBundle().URLForResource("sample", withExtension: "json")
+        
+        let data = NSData(contentsOfURL: url!)
+        
+        do {
+            let result = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+            
+            let resultArray = result.valueForKey("home") as! NSArray
+            
+            /* Build the data model entities */
+            for item in resultArray {
+                
+                let home = NSEntityDescription.insertNewObjectForEntityForName("Home", inManagedObjectContext: coreDataStack.managedObjectContext) as! Home
+                
+                home.county = item["county"] as? String
+                home.price = item["price"] as? NSNumber
+                home.bed = item["bed"] as? NSNumber
+                home.bath = item["bath"] as? NSNumber
+                home.sqft = item["sqft"] as? NSNumber
+                
+                let category = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: coreDataStack.managedObjectContext) as! Category
+                category.homeType = (item["category"] as! NSDictionary)["homeType"] as? String
+                home.category = category
+                
+                let status = NSEntityDescription.insertNewObjectForEntityForName("Status", inManagedObjectContext: coreDataStack.managedObjectContext) as! Status
+                let isForSale = (item["status"] as! NSDictionary)["isForSale"] as! Bool
+                status.isForSale = NSNumber(bool: isForSale)
+                home.status = status
+                
+                let location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: coreDataStack.managedObjectContext) as! Location
+                location.city = item["city"] as? String
+                home.location = location
+                
+                let imageName = item["image"] as? String
+                let image = UIImage(named: imageName!)
+                let imageData = UIImageJPEGRepresentation(image!, 1.0)
+                home.image = imageData
+
+            }
+            
+            coreDataStack.saveContext()
+            
+            /* Check that entities are not empty */
+            let request = NSFetchRequest(entityName: "Home")
+            let homeCount = coreDataStack.managedObjectContext.countForFetchRequest(request, error: nil)
+            print("The total home count after trying to load sample data is: ")
+            print(homeCount)
+            
+        } catch {
+            fatalError("Error parsing JSON sample data")
+        }
+        
+        
     }
 
 

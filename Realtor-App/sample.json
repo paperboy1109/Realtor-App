@@ -1,0 +1,289 @@
+{
+	"home": [{
+		"city": "Boulder",
+		"price": 289000,
+		"bed": 1,
+		"bath": 1,
+		"sqft": 821,
+		"image": "289000.jpg",
+		"category": {
+			"homeType": "Townhome"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}, {
+		"city": "Boulder",
+		"price": 1698000,
+		"bed": 5,
+		"bath": 4,
+		"sqft": 6544,
+		"image": "1698000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}, {
+		"city": "Louisville",
+		"price": 900000,
+		"bed": 5,
+		"bath": 3,
+		"sqft": 3978,
+		"image": "900000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}, {
+		"city": "Boulder",
+		"price": 889000,
+		"bed": 3,
+		"bath": 2,
+		"sqft": 3049,
+		"image": "889000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}, {
+		"city": "Louisville",
+		"price": 575000,
+		"bed": 4,
+		"bath": 2,
+		"sqft": 1800,
+		"image": "575000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}, {
+		"city": "Boulder",
+		"price": 325000,
+		"bed": 2,
+		"bath": 1,
+		"sqft": 816,
+		"image": "325000.jpg",
+		"category": {
+			"homeType": "Townhome"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}, {
+		"city": "Boulder",
+		"price": 1290000,
+		"bed": 3,
+		"bath": 3,
+		"sqft": 2708,
+		"image": "1290000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}, {
+		"city": "Boulder",
+		"price": 189900,
+		"bed": 1,
+		"bath": 1,
+		"sqft": 571,
+		"image": "189900.jpg",
+		"category": {
+			"homeType": "Townhome"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}, {
+		"city": "Boulder",
+		"price": 295000,
+		"bed": 2,
+		"bath": 2,
+		"sqft": 881,
+		"image": "295000.jpg",
+		"category": {
+			"homeType": "Townhome"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}, {
+		"city": "Louisville",
+		"price": 165000,
+		"bed": 1,
+		"bath": 1,
+		"sqft": 484,
+		"image": "165000.jpg",
+		"category": {
+			"homeType": "Townhome"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}, {
+		"city": "Boulder",
+		"price": 813000,
+		"bed": 4,
+		"bath": 4,
+		"sqft": 4497,
+		"image": "813000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": false
+		}
+	}, {
+		"city": "Boulder",
+		"price": 1075000,
+		"bed": 5,
+		"bath": 3,
+		"sqft": 3784,
+		"image": "1075000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": false
+		}
+	}, {
+		"city": "Louisville",
+		"price": 787500,
+		"bed": 4,
+		"bath": 3,
+		"sqft": 2587,
+		"image": "787500.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": false
+		}
+	}, {
+		"city": "Boulder",
+		"price": 763000,
+		"bed": 5,
+		"bath": 2,
+		"sqft": 2080,
+		"image": "763000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": false
+		}
+	}, {
+		"city": "Louisville",
+		"price": 880000,
+		"bed": 3,
+		"bath": 2,
+		"sqft": 3217,
+		"image": "880000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": false
+		}
+	}, {
+		"city": "Boulder",
+		"price": 247500,
+		"bed": 1,
+		"bath": 1,
+		"sqft": 483,
+		"image": "247500.jpg",
+		"category": {
+			"homeType": "Townhome"
+		},
+		"status": {
+			"isForSale": false
+		}
+	}, {
+		"city": "Boulder",
+		"price": 285000,
+		"bed": 2,
+		"bath": 1,
+		"sqft": 912,
+		"image": "285000.jpg",
+		"category": {
+			"homeType": "Townhome"
+		},
+		"status": {
+			"isForSale": false
+		}
+	}, {
+		"city": "Louisville",
+		"price": 236200,
+		"bed": 2,
+		"bath": 2,
+		"sqft": 965,
+		"image": "236200.jpg",
+		"category": {
+			"homeType": "Townhome"
+		},
+		"status": {
+			"isForSale": false
+		}
+	}, {
+		"city": "Boulder",
+		"price": 430000,
+		"bed": 2,
+		"bath": 1,
+		"sqft": 1140,
+		"image": "430000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": false
+		}
+	}, {
+		"city": "Louisville",
+		"price": 975000,
+		"bed": 4,
+		"bath": 3,
+		"sqft": 2812,
+		"image": "975000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": false
+		}
+	}, {
+		"city": "Boulder",
+		"price": 1660000,
+		"bed": 6,
+		"bath": 6,
+		"sqft": 6334,
+		"image": "1660000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}, {
+		"city": "Louisville",
+		"price": 965000,
+		"bed": 5,
+		"bath": 4,
+		"sqft": 4989,
+		"image": "965000.jpg",
+		"category": {
+			"homeType": "Single Family"
+		},
+		"status": {
+			"isForSale": true
+		}
+	}]
+}
