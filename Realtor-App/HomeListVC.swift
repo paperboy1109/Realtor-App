@@ -10,6 +10,11 @@ import UIKit
 
 class HomeListVC: UIViewController {
 
+    // MARK: - Outlets
+    
+    @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,5 +36,10 @@ class HomeListVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Actions
+    
+    @IBAction func segmentedControlTapped(sender: UISegmentedControl) {
+    }
 
 }
