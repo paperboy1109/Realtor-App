@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E298D881D307A3600C71B99 /* sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E298D871D307A3600C71B99 /* sample.plist */; };
 		4EC028BA1D30443700ED6338 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC028B91D30443700ED6338 /* AppDelegate.swift */; };
 		4EC028BC1D30443800ED6338 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC028BB1D30443800ED6338 /* ViewController.swift */; };
 		4EC028BF1D30443800ED6338 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EC028BD1D30443800ED6338 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E298D871D307A3600C71B99 /* sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sample.plist; sourceTree = "<group>"; };
 		4EC028B61D30443700ED6338 /* Realtor-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Realtor-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC028B91D30443700ED6338 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EC028BB1D30443800ED6338 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				4EC028BD1D30443800ED6338 /* Main.storyboard */,
 				4EC028C01D30443800ED6338 /* Assets.xcassets */,
 				4EC029291D306A4E00ED6338 /* sample.json */,
+				4E298D871D307A3600C71B99 /* sample.plist */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				4EC029341D306A4E00ED6338 /* 295000.jpg in Resources */,
 				4EC0292D1D306A4E00ED6338 /* 1660000.jpg in Resources */,
 				4EC0292B1D306A4E00ED6338 /* 1290000.jpg in Resources */,
+				4E298D881D307A3600C71B99 /* sample.plist in Resources */,
 				4EC029301D306A4E00ED6338 /* 236200.jpg in Resources */,
 				4EC0292C1D306A4E00ED6338 /* 165000.jpg in Resources */,
 			);
