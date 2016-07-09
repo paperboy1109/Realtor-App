@@ -18,7 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        deleteRecords()
+        let coreDataStack = CoreDataStack()
+        let managedObjectContext = coreDataStack.managedObjectContext
+        
+        
+        /* Assign the managed object context to the view controllers */
+        
+        let tabBarController = self.window?.rootViewController as! UITabBarController
+        
+        let homeListNavigationController = tabBarController.viewControllers![0] as! UINavigationController
+        let homeVC = homeListNavigationController.topViewController as! HomeListVC
+        homeVC.managedObjectContext = managedObjectContext
+        
+        let summaryNavigationController = tabBarController.viewControllers![1] as! UINavigationController
+        let summaryVC = summaryNavigationController.topViewController as! SummaryVC
+        summaryVC.managedObjectContext = managedObjectContext
+        
+        
+        
+        // deleteRecords()
         checkDataStore()
         
         return true

@@ -181,8 +181,8 @@
 		4EC028B81D30443700ED6338 /* Realtor-App */ = {
 			isa = PBXGroup;
 			children = (
-				4E8844AF1D30920F00580AB4 /* View */,
 				4EC028B91D30443700ED6338 /* AppDelegate.swift */,
+				4E8844AF1D30920F00580AB4 /* View */,
 				4EC029411D306B7300ED6338 /* Assets */,
 				4EC029121D306A4E00ED6338 /* images */,
 				4EC029011D3065E700ED6338 /* Model */,
@@ -216,8 +216,8 @@
 		4EC028EB1D304AC500ED6338 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4EC028E91D304ABF00ED6338 /* SummaryVC.swift */,
 				4EC028E71D304AAF00ED6338 /* HomeListVC.swift */,
+				4EC028E91D304ABF00ED6338 /* SummaryVC.swift */,
 				4E8844B21D3092DE00580AB4 /* FilterTableVC.swift */,
 			);
 			name = Controller;

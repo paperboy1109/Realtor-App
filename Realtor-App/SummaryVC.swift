@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
 class SummaryVC: UIViewController {
+    
+    // MARK: - Properties
+    
+    var managedObjectContext: NSManagedObjectContext!
 
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
