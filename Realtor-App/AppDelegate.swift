@@ -34,9 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let summaryVC = summaryNavigationController.topViewController as! SummaryVC
         summaryVC.managedObjectContext = managedObjectContext
         
+        // FilterTableVC does not have managedObjectContext set, but all other view controllers in interface builder do.
         
         
-        // deleteRecords()
+        
+        deleteRecords()
+        
         checkDataStore()
         
         return true
@@ -83,8 +86,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if homeCount == 0 {
             /* Chose one or the other data source */
-            //uploadSampleDataFromJSON()
-            uploadSampleDataFromPlist()
+            // Note: when switching you will want to make sure that deleteRecords is being called within didFinishLaunchingWithOptions
+            uploadSampleDataFromJSON()
+            //uploadSampleDataFromPlist()
         }
         
     }
@@ -225,7 +229,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             coreDataStack.saveContext()
             
-            // the .init() approach is deprecated in Swift 3
+            // the .init() approach is deprecated in Swift 3, you can just set the error to nil
             let homeCount = coreDataStack.managedObjectContext.countForFetchRequest(homeRequest, error: nil) //(homeRequest, error: NSErrorPointer.init())
             print("Total home after clean up: \(homeCount)")
         }

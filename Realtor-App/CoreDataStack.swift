@@ -18,7 +18,6 @@ class CoreDataStack {
         
         let urls = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask)
         
-        
         return urls[urls.count-1]
         
     }()

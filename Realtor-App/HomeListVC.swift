@@ -14,9 +14,7 @@ class HomeListVC: UIViewController {
     // MARK: - Properties
     
     var managedObjectContext: NSManagedObjectContext!
-    
-    var homes: [Home] = []
-    
+    var homes: [Home] = []    
     var isForSale: Bool = true
     
     // MARK: - Outlets
@@ -32,22 +30,6 @@ class HomeListVC: UIViewController {
         // Do any additional setup after loading the view.
         loadData()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
     // MARK: - Actions
     
@@ -115,7 +97,7 @@ extension HomeListVC: UITableViewDelegate, UITableViewDataSource {
         let image = UIImage(data: home.image!)
         cell.homeImageView.image = image
         
-        // TODO: Move this view customization to the custom cell class
+        // TODO: Consider moving this view customization to the custom cell class
         cell.homeImageView.layer.borderWidth = 1
         cell.homeImageView.layer.cornerRadius = 4
         
