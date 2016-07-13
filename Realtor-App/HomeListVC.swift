@@ -17,6 +17,11 @@ class HomeListVC: UIViewController {
     var homes: [Home] = []    
     var isForSale: Bool = true
     
+    var fetchRequest: NSFetchRequest!
+    
+    var sortDescriptor = [NSSortDescriptor]()
+    var searchPredicate: NSPredicate?
+    
     // MARK: - Outlets
     
     @IBOutlet var segmentedControl: UISegmentedControl!
@@ -27,7 +32,14 @@ class HomeListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        //loadData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchRequest = NSFetchRequest(entityName: "Home")
+        
         loadData()
     }
     
@@ -42,13 +54,47 @@ class HomeListVC: UIViewController {
         loadData()
     }
     
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ToFilter" {
+            
+            /* Reset the filters */
+            sortDescriptor = []
+            searchPredicate = nil
+            
+            let viewController = segue.destinationViewController as! FilterTableVC
+            viewController.delegate = self
+        }
+    }
+    
     // MARK: - Helpers
     
     func loadData() {
         
-        let fetchRequest = NSFetchRequest(entityName: "Home")
+//        let fetchRequest = NSFetchRequest(entityName: "Home")
+//        fetchRequest.predicate = NSPredicate(format: "status.isForSale = %@", isForSale)
         
-        fetchRequest.predicate = NSPredicate(format: "status.isForSale = %@", isForSale)
+        /* Allow filters to be applied */
+        
+        // Build the predicates
+        var subPredicates = [NSPredicate]()
+        let statusPredicate = NSPredicate(format: "status.isForSale = %@", isForSale)
+        subPredicates.append(statusPredicate)
+        if let additionalPredicates = searchPredicate {
+            subPredicates.append(additionalPredicates)
+        }
+        
+        // Make use of NSCompoundPredicate
+        let predicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: subPredicates)
+        
+        fetchRequest.predicate = predicate
+        
+        /* Take sorting into account */
+        
+        if sortDescriptor.count > 0 {
+            fetchRequest.sortDescriptors = sortDescriptor
+        }
         
         do {
             homes = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Home]
@@ -105,6 +151,25 @@ extension HomeListVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+
     
     
+}
+
+
+
+
+extension HomeListVC: FilterTableVCDelegate {
+    func updateHomeList(filterBy: NSPredicate?, sortBy: NSSortDescriptor?) {
+        
+        // The filter applies to a total of two, mutually-exclusive groups so there is only one T/F property needed
+        if let filter = filterBy {
+            searchPredicate = filter
+        }
+        
+        // Sorting can have multiple criteria at once, e.g. price and location, hence the array
+        if let sort = sortBy {
+            sortDescriptor.append(sort)
+        }
+    }
 }
