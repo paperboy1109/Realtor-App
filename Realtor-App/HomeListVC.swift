@@ -96,9 +96,23 @@ class HomeListVC: UIViewController {
             fetchRequest.sortDescriptors = sortDescriptor
         }
         
-        do {
-            homes = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Home]
+        /* Build an asynchronous request */
+        
+        let asynchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (result: NSAsynchronousFetchResult) in
+            
+            self.homes = result.finalResult as! [Home]
             self.tableView.reloadData()
+            
+        }
+        
+        do {
+            
+//            homes = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Home]
+//            self.tableView.reloadData()
+            
+            /* Make an asynchronous fetch request */
+            try managedObjectContext.executeRequest(asynchRequest)
+            
         } catch {
             fatalError("Failed to get an array of Homes where status isForSale")
         }
