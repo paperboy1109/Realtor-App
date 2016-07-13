@@ -106,8 +106,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let resultArray = result.valueForKey("home") as! NSArray
             
+            /* Create variables to store location information */
+            var locations: [String] = []
+            var location: Location
+            var currentLocation: String
+            
             /* Build the data model entities */
             for item in resultArray {
+                
+                currentLocation = (item["city"] as? String)!
+                
+                // The location entity does not exist and a new one must be created
+                if locations.indexOf(currentLocation) == nil {
+                    
+                    location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: coreDataStack.managedObjectContext) as! Location
+                    location.city = currentLocation
+                    locations.append(location.city!)
+                }
+                
+                // The location entity already exists
+                else {
+                    
+                    let fetchRequest = NSFetchRequest(entityName: "Location")
+                    fetchRequest.predicate = NSPredicate(format: "city = %@", currentLocation)
+                    
+                    let result = try coreDataStack.managedObjectContext.executeFetchRequest(fetchRequest) as! [Location]
+                    
+                    // only one location is expected and desired
+                    location = result.first!
+                }
+                
                 
                 let home = NSEntityDescription.insertNewObjectForEntityForName("Home", inManagedObjectContext: coreDataStack.managedObjectContext) as! Home
                 
@@ -126,24 +154,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 status.isForSale = NSNumber(bool: isForSale)
                 home.status = status
                 
+                // This information is now stored using a Location entity
+                /*
                 let location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: coreDataStack.managedObjectContext) as! Location
                 location.city = item["city"] as? String
                 home.location = location
+                 */
                 
                 let imageName = item["image"] as? String
                 let image = UIImage(named: imageName!)
                 let imageData = UIImageJPEGRepresentation(image!, 1.0)
                 home.image = imageData
                 
+                // Insert a new home to Location [Home] as type NSSet
+                /* Create a mutable copy of the home attribute, update, and then update the location attribute */
+                let homes = location.home!.mutableCopy() as! NSMutableSet
+                homes.addObject(home)
+                
+                location.home = homes.copy() as? NSSet
+                
             }
             
             coreDataStack.saveContext()
             
             /* Check that entities are not empty */
-            let request = NSFetchRequest(entityName: "Home")
+//            let request = NSFetchRequest(entityName: "Home")
+//            let homeCount = coreDataStack.managedObjectContext.countForFetchRequest(request, error: nil)
+//            print("The total home count after trying to load sample data is: ")
+//            print(homeCount)
+            
+            /* Check wether the correct number of locations is being stored */
+            var request = NSFetchRequest(entityName: "Home")
             let homeCount = coreDataStack.managedObjectContext.countForFetchRequest(request, error: nil)
             print("The total home count after trying to load sample data is: ")
             print(homeCount)
+            
+            request = NSFetchRequest(entityName: "Location")
+            let locationCount = coreDataStack.managedObjectContext.countForFetchRequest(request, error: nil)
+            print("The total location count after trying to load sample data is: ")
+            print(locationCount)
+            print("To verify that the location information is correct: ")
+            print(locations)
+            
             
         } catch {
             fatalError("Error parsing JSON sample data")

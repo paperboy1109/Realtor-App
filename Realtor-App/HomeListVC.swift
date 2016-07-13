@@ -14,13 +14,17 @@ class HomeListVC: UIViewController {
     // MARK: - Properties
     
     var managedObjectContext: NSManagedObjectContext!
-    var homes: [Home] = []    
+    
+    var homes: [Home] = []
+    var locations: [Location] = []
+    
     var isForSale: Bool = true
     
     var fetchRequest: NSFetchRequest!
     
     var sortDescriptor = [NSSortDescriptor]()
     var searchPredicate: NSPredicate?
+    var locationPredicate: NSPredicate?
     
     // MARK: - Outlets
     
@@ -38,9 +42,13 @@ class HomeListVC: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchRequest = NSFetchRequest(entityName: "Home")
+        if let _ = locationPredicate {
+            searchByLocation()
+        } else {
+            fetchRequest = NSFetchRequest(entityName: "Home")
+            loadData()
+        }
         
-        loadData()
     }
     
     // MARK: - Actions
@@ -51,7 +59,12 @@ class HomeListVC: UIViewController {
         
         isForSale = selectedValue == "For Sale" ? true: false
         
-        loadData()
+        if let _ = locationPredicate {
+            searchByLocation()
+        } else {
+            //fetchRequest = NSFetchRequest(entityName: "Home")
+            loadData()
+        }
     }
     
     // MARK: - Navigation
@@ -64,6 +77,9 @@ class HomeListVC: UIViewController {
             searchPredicate = nil
             
             let viewController = segue.destinationViewController as! FilterTableVC
+            // *
+            viewController.managedObjectContext = managedObjectContext
+            // *
             viewController.delegate = self
         }
     }
@@ -72,8 +88,8 @@ class HomeListVC: UIViewController {
     
     func loadData() {
         
-//        let fetchRequest = NSFetchRequest(entityName: "Home")
-//        fetchRequest.predicate = NSPredicate(format: "status.isForSale = %@", isForSale)
+        //        let fetchRequest = NSFetchRequest(entityName: "Home")
+        //        fetchRequest.predicate = NSPredicate(format: "status.isForSale = %@", isForSale)
         
         /* Allow filters to be applied */
         
@@ -107,14 +123,42 @@ class HomeListVC: UIViewController {
         
         do {
             
-//            homes = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Home]
-//            self.tableView.reloadData()
+            //            homes = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Home]
+            //            self.tableView.reloadData()
             
             /* Make an asynchronous fetch request */
             try managedObjectContext.executeRequest(asynchRequest)
             
         } catch {
             fatalError("Failed to get an array of Homes where status isForSale")
+        }
+    }
+    
+    func searchByLocation() {
+        
+        fetchRequest = NSFetchRequest(entityName: "Location")
+        fetchRequest.predicate = locationPredicate!
+        
+        do {
+            
+            let asynchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (result: NSAsynchronousFetchResult) in
+                
+                // Only one result is expected and desired
+                let location: Location = (result.finalResult as! [Location]).first!
+                
+                self.homes = (location.home?.allObjects as! [Home]).filter({ (home) -> Bool in
+                    // Filter the array of homes to match isForSale (default is true)
+                    return (home.status!.isForSale == self.isForSale)
+                })
+                
+                self.tableView.reloadData()
+                
+            }
+            
+            try managedObjectContext.executeRequest(asynchRequest)
+            
+        } catch {
+            fatalError("Error in getting a list of homes by location")
         }
     }
     
@@ -165,7 +209,7 @@ extension HomeListVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-
+    
     
     
 }
@@ -174,6 +218,7 @@ extension HomeListVC: UITableViewDelegate, UITableViewDataSource {
 
 
 extension HomeListVC: FilterTableVCDelegate {
+    
     func updateHomeList(filterBy: NSPredicate?, sortBy: NSSortDescriptor?) {
         
         // The filter applies to a total of two, mutually-exclusive groups so there is only one T/F property needed

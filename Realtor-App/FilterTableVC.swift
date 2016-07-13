@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol FilterTableVCDelegate: class {
     func updateHomeList(filterBy: NSPredicate?, sortBy: NSSortDescriptor?)
@@ -15,9 +16,16 @@ protocol FilterTableVCDelegate: class {
 class FilterTableVC: UITableViewController {
     
     // MARK: - Properties
+    var managedObjectContext: NSManagedObjectContext!
+    
     var sortDescriptor: NSSortDescriptor?
     var searchPredicate: NSPredicate?
+    var locationPredicate: NSPredicate?
+    
     var delegate: FilterTableVCDelegate!
+    
+    var pickerOption = ["All", "Boulder", "Louisville"]
+    
     
     
     // MARK: - Outlets
@@ -28,6 +36,8 @@ class FilterTableVC: UITableViewController {
     
     @IBOutlet var filterByTownhomeCell: UITableViewCell!
     @IBOutlet var filterBySingleFamilyCell: UITableViewCell!
+    
+    @IBOutlet var pickerView: UIPickerView!
     
     
     // MARK: - Lifecycle
@@ -40,6 +50,8 @@ class FilterTableVC: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        pickerView.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,7 +62,7 @@ class FilterTableVC: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,6 +72,8 @@ class FilterTableVC: UITableViewController {
             return 3
         } else if section == 1 {
             return 2
+        } else if section == 2 {
+            return 1
         } else {
             return 0
         }
@@ -146,15 +160,20 @@ class FilterTableVC: UITableViewController {
         delegate.updateHomeList(searchPredicate, sortBy: sortDescriptor)
     }
     
-    /*
+    
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
      override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "ToHomeListByLocation" {
+            let homeListController = segue.destinationViewController as! HomeListVC
+            homeListController.locationPredicate = locationPredicate
+            homeListController.managedObjectContext = managedObjectContext
+        }
+     
+     
      }
-     */
+    
     
     // MARK: - Helpers
     
@@ -166,4 +185,29 @@ class FilterTableVC: UITableViewController {
         searchPredicate = NSPredicate(format: "category.homeType = %@", filterBy)
     }
     
+}
+
+
+extension FilterTableVC: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerOption.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerOption[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if !pickerOption[row].lowercaseString.containsString("all") {
+            locationPredicate = NSPredicate(format: "city = %@", pickerOption[row])
+            
+            performSegueWithIdentifier("ToHomeListByLocation", sender: self)
+        }
+    }
 }

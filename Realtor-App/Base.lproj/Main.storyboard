@@ -211,7 +211,7 @@
                             <tableViewSection headerTitle="SORT BY" id="1tS-pY-Btu">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="lwF-gN-ewI" style="IBUITableViewCellStyleDefault" id="86i-h9-oh7">
-                                        <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="86i-h9-oh7" id="jCz-J7-HtE">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -228,7 +228,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="nwP-SG-KY4" style="IBUITableViewCellStyleDefault" id="Hhe-XC-wae">
-                                        <rect key="frame" x="0.0" y="158" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="94" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hhe-XC-wae" id="6cF-92-sYd">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -245,7 +245,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="5zK-Ny-4cn" style="IBUITableViewCellStyleDefault" id="bPw-CW-daS">
-                                        <rect key="frame" x="0.0" y="202" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="138" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bPw-CW-daS" id="Q7i-r5-BRa">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -266,7 +266,7 @@
                             <tableViewSection headerTitle="FILTER BY" id="Kit-hQ-1L9">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Ycf-gd-c0J" style="IBUITableViewCellStyleDefault" id="QT4-ZZ-Eg7">
-                                        <rect key="frame" x="0.0" y="297" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="233" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QT4-ZZ-Eg7" id="oM7-pQ-4Fw">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -283,7 +283,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="rM4-ZX-TYe" style="IBUITableViewCellStyleDefault" id="dwg-l7-Op8">
-                                        <rect key="frame" x="0.0" y="341" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="277" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dwg-l7-Op8" id="xFi-r9-MOL">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -301,6 +301,33 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="LOCATION SEARCH" id="2Jw-rF-Ekq" userLabel="LOCATION SEARCH">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="96" id="Jd2-0V-3MF">
+                                        <rect key="frame" x="0.0" y="372" width="600" height="96"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jd2-0V-3MF" id="GzG-FZ-OEP">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bD-Gv-Dzh">
+                                                    <rect key="frame" x="0.0" y="-2" width="600" height="99"/>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9bD-Gv-Dzh" firstAttribute="leading" secondItem="GzG-FZ-OEP" secondAttribute="leadingMargin" constant="-8" id="796-Px-3ko"/>
+                                                <constraint firstItem="9bD-Gv-Dzh" firstAttribute="centerY" secondItem="GzG-FZ-OEP" secondAttribute="centerY" id="Hr5-o0-yFl" userLabel="Picker View.centerY = centerY + 0.5"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="9bD-Gv-Dzh" secondAttribute="bottom" constant="-10" id="Tnq-si-Ypg"/>
+                                                <constraint firstItem="9bD-Gv-Dzh" firstAttribute="centerX" secondItem="GzG-FZ-OEP" secondAttribute="centerX" id="dhr-BI-0z4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9bD-Gv-Dzh" secondAttribute="trailing" constant="-8" id="q8B-h7-aXS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="rLn-dZ-b46" kind="show" identifier="ToHomeListByLocation" id="b9U-qv-rq7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="Dhs-TS-LZL" id="ZMn-rE-Okr"/>
@@ -310,6 +337,7 @@
                     <connections>
                         <outlet property="filterBySingleFamilyCell" destination="dwg-l7-Op8" id="ons-t8-aRa"/>
                         <outlet property="filterByTownhomeCell" destination="QT4-ZZ-Eg7" id="8E7-aD-CpX"/>
+                        <outlet property="pickerView" destination="9bD-Gv-Dzh" id="gD7-7s-KAI"/>
                         <outlet property="sortByLocationCell" destination="86i-h9-oh7" id="D1v-zg-XKs"/>
                         <outlet property="sortByPriceHighLowCell" destination="bPw-CW-daS" id="TRO-tF-TWP"/>
                         <outlet property="sortByPriceLowHighCell" destination="Hhe-XC-wae" id="n0k-bD-qsD"/>
@@ -586,4 +614,7 @@
             <point key="canvasLocation" x="1647" y="736"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="b9U-qv-rq7"/>
+    </inferredMetricsTieBreakers>
 </document>
